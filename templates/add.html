@@ -3,24 +3,24 @@
 {% block title%}Add Blog Posts!{% endblock %}
 
 {% block content %}
-<form method="POST" action="">
+<form method="POST" action="/add">
   <div class="container">
   <div class="row mb-3">
     <label for="blog_author" class="col-sm-2 col-form-label">Author:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="blog_author" placeholder="Please enter author's name!">
+      <input type="text" name="author" class="form-control" id="blog_author" placeholder="Please enter author's name!">
     </div>
   </div>
   <div class="row mb-3">
     <label for="blog_title" class="col-sm-2 col-form-label">Title:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="blog_title" placeholder="Please enter a title!">
+      <input type="text" name="title" class="form-control" id="blog_title" placeholder="Please enter a title!">
     </div>
   </div>
   <div class="row mb-3">
     <label for="blog_content" class="col-sm-2 col-form-label">Content:</label>
     <div class="col-sm-10">
-      <textarea class="form-control" id="blog_content" placeholder="Please enter your content!" rows="7"></textarea>
+      <textarea class="form-control" name="content" id="blog_content" placeholder="Please enter your content!" rows="7"></textarea>
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
