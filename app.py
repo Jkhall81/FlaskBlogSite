@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import json
 
 app = Flask(__name__)
+app.secret_key = '23ydk83%ladkjj4319lasdf'
 
 
 def open_data(filename):
@@ -75,9 +76,11 @@ def delete(post_id):
         blog_posts.pop(post_index)
 
         save_data(blog_posts)
+        flash('Post deleted successfully!')
         return redirect(url_for('index'))
     else:
-        return 'Post not found'
+        flash('Post not found')
+        return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
