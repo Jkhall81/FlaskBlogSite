@@ -83,5 +83,19 @@ def delete(post_id):
         return redirect(url_for('index'))
 
 
+@app.route('/update/<int:post_id>')
+def update(post_id):
+    blog_posts = open_data('data.json')
+
+    post_index = None
+    for index, post in enumerate(blog_posts):
+        if post['id'] == post_id:
+            post_index = index
+            break
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
