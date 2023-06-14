@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import json
 
 app = Flask(__name__)
@@ -59,6 +59,25 @@ def add():
         return redirect('/')
 
     return render_template('add.html')
+
+
+@app.route('/delete/<int:post_id>')
+def delete(post_id):
+    blog_posts = open_data('data.json')
+
+    post_index = None
+    for index, post in enumerate(blog_posts):
+        if post['id'] == post_id:
+            post_index = index
+            break
+
+    if post_index is not None:
+        blog_posts.pop(post_index)
+
+        save_data(blog_posts)
+        return redirect(url_for('index'))
+    else:
+        return 'Post not found'
 
 
 if __name__ == '__main__':
