@@ -83,18 +83,30 @@ def delete(post_id):
         return redirect(url_for('index'))
 
 
-@app.route('/update/<int:post_id>')
+@app.route('/update/<int:post_id>', methods=['GET', 'POST'])
 def update(post_id):
     blog_posts = open_data('data.json')
 
     post_index = None
-    for index, post in enumerate(blog_posts):
-        if post['id'] == post_id:
+    post = None
+
+    for index, p in enumerate(blog_posts):
+        if p['id'] == post_id:
             post_index = index
+            post = p
             break
 
+    if request.method == 'POST':
+        # grab the posted data
+        blog_posts[post_index]['author'] = request.form.get('blog_author')
+        blog_posts[post_index]['title'] = request.form.get('blog_title')
+        blog_posts[post_index]['content'] = request.form.get('blog_content')
 
+        save_data(blog_posts)
+        flash('Post updated successfully!')
+        return redirect(url_for('index'))
 
+    return render_template('update.html', post=post)
 
 
 if __name__ == '__main__':

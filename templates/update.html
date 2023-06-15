@@ -3,6 +3,30 @@
 {% block title%}Update Blog Posts!{% endblock %}
 
 {% block content %}
-
-
+<form method="POST" action="{{ url_for('update', post_id=post.id) }}">
+  <div class="container">
+  <div class="row mb-3">
+    <label for="blog_author" class="col-sm-2 col-form-label">Author:</label>
+    <div class="col-sm-10">
+      <input type="text" name="blog_author" value ="{{ post.author }}" class="form-control" id="blog_author" placeholder="Please enter author's name!">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="blog_title" class="col-sm-2 col-form-label">Title:</label>
+    <div class="col-sm-10">
+      <input type="text" name="blog_title" value="{{ post.title }}" class="form-control" id="blog_title" placeholder="Please enter a title!">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="blog_content" class="col-sm-2 col-form-label">Content:</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="blog_content" id="blog_content" rows="7">{{ post.content }}</textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" value="Update">Update</button>
+    <div class="container d-flex justify-content-center">
+      <img src="https://picsum.photos/400/300.webp" class="img-fluid rounded-start" alt="random image">
+    </div>
+    </div>
+</form>
 {% endblock %}
